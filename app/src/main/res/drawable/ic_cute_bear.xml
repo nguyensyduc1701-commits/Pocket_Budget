@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Left Ear -->
+    <path
+        android:fillColor="#795548"
+        android:pathData="M5,6m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+
+    <!-- Right Ear -->
+    <path
+        android:fillColor="#795548"
+        android:pathData="M19,6m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+
+    <!-- Face (Circle) -->
+    <path
+        android:fillColor="#A1887F"
+        android:pathData="M12,13m-9,0a9,9 0,1 1,18 0a9,9 0,1 1,-18 0"/>
+
+    <!-- Snout (Lighter Circle) -->
+    <path
+        android:fillColor="#D7CCC8"
+        android:pathData="M12,16m-3.5,0a3.5,2.5 0,1 1,7 0a3.5,2.5 0,1 1,-7 0"/>
+
+    <!-- Nose (Dark Heart/Circle) -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M12,15.5m-1.2,0a1.2,1.0 0,1 1,2.4 0a1.2,1.0 0,1 1,-2.4 0"/>
+
+    <!-- Left Eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M8.5,11m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"/>
+
+    <!-- Right Eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M15.5,11m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"/>
+
+    <!-- Cute Cheeks (Pink) -->
+    <path
+        android:fillColor="#FFAB91"
+        android:alpha="0.6"
+        android:pathData="M5.5,13.5m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"/>
+    <path
+        android:fillColor="#FFAB91"
+        android:alpha="0.6"
+        android:pathData="M18.5,13.5m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"/>
+</vector>

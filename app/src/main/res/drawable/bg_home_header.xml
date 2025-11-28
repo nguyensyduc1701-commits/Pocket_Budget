@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Deep Purple to Pink/Magenta Gradient -->
+    <gradient
+        android:angle="270"
+        android:startColor="#7B1FA2"
+        android:endColor="#4A148C"
+        android:type="linear" />
+
+    <corners
+        android:bottomLeftRadius="32dp"
+        android:bottomRightRadius="32dp" />
+</shape>

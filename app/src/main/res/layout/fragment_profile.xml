@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient_dark">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_home_header"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_cute_bear"
+            android:background="@drawable/circle_white_bg"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user@email.com"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+
+    <!-- Budget Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="-20dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#263238">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Monthly Goal"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"/>
+
+                <ImageView
+                    android:id="@+id/btnEditBudget"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    app:tint="#00E5FF"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarBudget"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="12dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                android:max="100"
+                android:progress="0"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvExpenseStatus"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Spent: 0"
+                    android:textSize="12sp"
+                    android:textColor="#B0BEC5"/>
+
+                <TextView
+                    android:id="@+id/tvBudgetLimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Limit: 1000"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#00E5FF"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Settings List -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#263238">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!--  Export -->
+                <TextView
+                    android:id="@+id/btnExportReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Export to Excel (CSV)"
+                    android:textColor="#00E676"
+                    android:drawableStart="@android:drawable/ic_menu_save"
+                    android:drawableTint="#00E676"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#455A64"/>
+
+                <!--  Currency Switcher -->
+                <TextView
+                    android:id="@+id/btnCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Currency: $"
+                    android:textColor="#FFFFFF"
+                    android:drawableStart="@android:drawable/ic_menu_rotate"
+                    android:drawableTint="#FFFFFF"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#455A64"/>
+
+                <!--  Help -->
+                <TextView
+                    android:id="@+id/btnHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Help &amp; About"
+                    android:textColor="#FFFFFF"
+                    android:drawableStart="@android:drawable/ic_menu_info_details"
+                    android:drawableTint="#FFFFFF"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#455A64"/>
+
+                <!--  Change Password -->
+                <TextView
+                    android:id="@+id/btnResetPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:textColor="#FFFFFF"
+                    android:drawableStart="@android:drawable/ic_menu_help"
+                    android:drawableTint="#FFFFFF"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#455A64"/>
+
+                <!--  Clear Data -->
+                <TextView
+                    android:id="@+id/btnClearData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clear All Data"
+                    android:textColor="#FF8A80"
+                    android:drawableStart="@android:drawable/ic_menu_delete"
+                    android:drawableTint="#FF8A80"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#455A64"/>
+
+                <!--  Logout -->
+                <TextView
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:textColor="#FFFFFF"
+                    android:drawableStart="@android:drawable/ic_lock_power_off"
+                    android:drawableTint="#FFFFFF"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+</LinearLayout>
