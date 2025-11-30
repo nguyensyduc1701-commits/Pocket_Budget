@@ -16,8 +16,6 @@ class AddTransactionActivity : AppCompatActivity() {
     private lateinit var spinnerCategory: Spinner
     private lateinit var btnDate: Button
     private var selectedTimestamp: Long = System.currentTimeMillis()
-
-    // Match these exactly with Home Fragment Filters
     private val incomeCategories = listOf("Salary", "Business", "Gift", "Investment", "Other")
     private val expenseCategories = listOf("Food", "Transport", "Rent", "Bills", "Shopping", "Entertainment", "Health", "Education", "Other")
 
