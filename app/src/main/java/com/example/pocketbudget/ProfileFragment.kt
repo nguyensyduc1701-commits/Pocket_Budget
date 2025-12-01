@@ -137,13 +137,13 @@ class ProfileFragment : Fragment() {
         btnHelp.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("About Pocket Budget")
-                .setMessage("Version 1.0.0\n\n" +
+                .setMessage(
                         "How to use:\n" +
                         "1. Use the + button to add Income or Expenses.\n" +
                         "2. View your balance on the Home Dashboard.\n" +
                         "3. Check the Stats tab for visual breakdowns.\n" +
-                        "4. Set a monthly spending limit here in Profile.\n\n" +
-                        "Created for Final Year Project.")
+                        "4. Set a monthly spending limit here in Profile.\n\n"
+                        )
                 .setPositiveButton("Got it", null)
                 .show()
         }
