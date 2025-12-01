@@ -67,7 +67,7 @@ class ProfileFragment : Fragment() {
                     if (snapshots != null) {
                         var totalExp = 0.0
 
-                        // --- NEW LOGIC: Get Current Month & Year ---
+                        //  Get Current Month & Year ---
                         val calendar = Calendar.getInstance()
                         val currentMonth = calendar.get(Calendar.MONTH)
                         val currentYear = calendar.get(Calendar.YEAR)
@@ -81,7 +81,7 @@ class ProfileFragment : Fragment() {
                             val transCalendar = Calendar.getInstance()
                             transCalendar.timeInMillis = timestamp
 
-                            // Only add if it matches THIS month and THIS year
+
                             if (type == "EXPENSE" &&
                                 transCalendar.get(Calendar.MONTH) == currentMonth &&
                                 transCalendar.get(Calendar.YEAR) == currentYear) {
