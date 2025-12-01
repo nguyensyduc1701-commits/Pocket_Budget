@@ -127,7 +127,7 @@
             android:textColor="#000000"
             android:backgroundTint="#00E5FF"
             android:layout_marginTop="24dp"/>
-
+        <!-- Delete Button -->
         <Button
             android:id="@+id/btnDeleteTransaction"
             android:layout_width="match_parent"

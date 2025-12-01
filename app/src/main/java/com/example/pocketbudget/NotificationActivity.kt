@@ -2,6 +2,7 @@ package com.example.pocketbudget
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class NotificationActivity : AppCompatActivity() {
 
     private lateinit var adapter: NotificationAdapter
     private val notificationList = ArrayList<NotificationItem>()
+    private var currencySymbol: String = "$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,10 @@ class NotificationActivity : AppCompatActivity() {
 
         btnBack.setOnClickListener { finish() }
 
+
+        val prefs = getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
+        currencySymbol = prefs.getString("currency", "$") ?: "$"
+
         // Initialize Adapter with Delete Logic
         adapter = NotificationAdapter(notificationList) { id, position ->
             deleteNotification(id, position)
@@ -37,6 +43,15 @@ class NotificationActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         loadNotifications()
+    }
+
+
+    private fun formatMoney(amount: Double): String {
+        return if (currencySymbol == "₫") {
+            "${String.format("%.0f", amount)} $currencySymbol"
+        } else {
+            "$currencySymbol${String.format("%.0f", amount)}"
+        }
     }
 
     private fun loadNotifications() {
@@ -51,9 +66,13 @@ class NotificationActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 notificationList.clear()
-                var totalExpense = 0.0
+                var currentMonthExpense = 0.0
 
-                //  Convert Transactions to Notifications AND Calculate Total Expense
+
+                val calendar = Calendar.getInstance()
+                val currentMonth = calendar.get(Calendar.MONTH)
+                val currentYear = calendar.get(Calendar.YEAR)
+
                 for (doc in documents) {
                     val id = doc.id
                     val amount = doc.getDouble("amount") ?: 0.0
@@ -61,21 +80,29 @@ class NotificationActivity : AppCompatActivity() {
                     val category = doc.getString("category") ?: "Unknown"
                     val timestamp = doc.getLong("timestamp") ?: 0L
 
-                    // Calculate Total for Budget Logic
+
                     if (type == "EXPENSE") {
-                        totalExpense += amount
+                        val transCalendar = Calendar.getInstance()
+                        transCalendar.timeInMillis = timestamp
+
+                        if (transCalendar.get(Calendar.MONTH) == currentMonth &&
+                            transCalendar.get(Calendar.YEAR) == currentYear) {
+                            currentMonthExpense += amount
+                        }
                     }
 
-                    // Skip adding to list if user deleted this specific transaction notification
                     if (deletedSet.contains(id)) continue
 
                     val dateStr = SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault()).format(Date(timestamp))
+
+
+                    val moneyStr = formatMoney(amount)
 
                     if (type == "EXPENSE") {
                         notificationList.add(NotificationItem(
                             id,
                             "Expense Alert",
-                            "You spent $${amount.toInt()} on $category.",
+                            "You spent $moneyStr on $category.",
                             dateStr,
                             "INFO"
                         ))
@@ -83,15 +110,15 @@ class NotificationActivity : AppCompatActivity() {
                         notificationList.add(NotificationItem(
                             id,
                             "Income Received",
-                            "You received $${amount.toInt()} from $category.",
+                            "You received $moneyStr from $category.",
                             dateStr,
                             "SUCCESS"
                         ))
                     }
                 }
 
-                //  Add Budget Status
-                addBudgetNotification(totalExpense)
+
+                addBudgetNotification(currentMonthExpense)
 
                 adapter.notifyDataSetChanged()
             }
@@ -101,13 +128,17 @@ class NotificationActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("BudgetPrefs", Context.MODE_PRIVATE)
         val limit = prefs.getFloat("limit", 1000f)
 
+
+        val spentStr = formatMoney(currentExpense)
+        val limitStr = formatMoney(limit.toDouble())
+
         val item: NotificationItem
 
         if (currentExpense > limit) {
             item = NotificationItem(
-                "budget_status", // Fixed ID
+                "budget_status",
                 "Budget Exceeded!",
-                "You have spent $${currentExpense.toInt()} which is over your $${limit.toInt()} limit.",
+                "You have spent $spentStr which is over your $limitStr limit.",
                 "Urgent",
                 "ALERT"
             )
@@ -123,38 +154,32 @@ class NotificationActivity : AppCompatActivity() {
             item = NotificationItem(
                 "budget_status",
                 "On Track",
-                "You are within your budget (${((currentExpense/limit)*100).toInt()}% used).",
+                "You are within your monthly budget.",
                 "Today",
                 "SUCCESS"
             )
         }
 
-
         notificationList.add(0, item)
     }
 
     private fun deleteNotification(id: String, position: Int) {
-        //  Guard Clause to prevent deleting permanent notification ---
         if (id == "budget_status") {
-            // Do not delete permanent notification
             Toast.makeText(this, "The budget status notification cannot be dismissed.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 1. Remove from UI
         if (position < notificationList.size) {
             notificationList.removeAt(position)
             adapter.notifyItemRemoved(position)
-            // Fix range to prevent crashes
             adapter.notifyItemRangeChanged(position, notificationList.size)
         }
 
-        // 2. Save "Deleted" status to Phone Memory for transaction notifications
         val prefs = getSharedPreferences("DeletedNotifs", Context.MODE_PRIVATE)
         val set = prefs.getStringSet("ids", HashSet())?.toMutableSet() ?: HashSet()
         set.add(id)
         prefs.edit().putStringSet("ids", set).apply()
 
-        Toast.makeText(this, "Transaction notification dismissed", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Notification dismissed", Toast.LENGTH_SHORT).show()
     }
 }

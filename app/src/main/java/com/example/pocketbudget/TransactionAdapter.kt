@@ -45,7 +45,7 @@ class TransactionAdapter(
             holder.tvSubText.text = dateStr
         }
 
-        //  FORMATTING LOGIC
+
         val formattedAmount = if (currencySymbol == "₫") {
             "${String.format("%.0f", transaction.amount)} $currencySymbol"
         } else {

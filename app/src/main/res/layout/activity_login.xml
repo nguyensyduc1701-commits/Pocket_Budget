@@ -7,7 +7,7 @@
     android:background="@drawable/bg_gradient_dark"
     android:padding="32dp">
 
-    <!-- Logo or Icon -->
+    <!-- Logo , Icon -->
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"

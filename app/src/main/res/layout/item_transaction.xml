@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <!-- Edit Icon (Subtle) -->
+        <!-- Edit Icon -->
         <ImageView
             android:id="@+id/ivEditIcon"
             android:layout_width="20dp"

@@ -165,7 +165,7 @@ class HomeFragment : Fragment() {
         } else {
             filteredList.addAll(transactionList.filter { it.category == category })
         }
-        // Re-apply default sort (Newest) when filter changes
+
         filteredList.sortByDescending { it.timestamp }
         adapter.notifyDataSetChanged()
     }

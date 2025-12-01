@@ -14,7 +14,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
 
-        // Explicitly initialize Firebase to prevent the "Default FirebaseApp is not initialized" crash
         if (FirebaseApp.getApps(this).isEmpty()) {
             FirebaseApp.initializeApp(this)
         }

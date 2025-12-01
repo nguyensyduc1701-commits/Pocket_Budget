@@ -24,7 +24,7 @@
             android:textStyle="bold"
             android:gravity="start"/>
 
-        <!-- NOTIFICATION CONTAINER -->
+        <!-- Notification -->
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -49,7 +49,7 @@
         </FrameLayout>
     </LinearLayout>
 
-    <!--  Main Gradient Balance Card -->
+    <!-- Gradient Balance Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <!--  Sort Button with Text -->
+        <!--  Sort Button -->
         <LinearLayout
             android:id="@+id/btnSort"
             android:layout_width="wrap_content"

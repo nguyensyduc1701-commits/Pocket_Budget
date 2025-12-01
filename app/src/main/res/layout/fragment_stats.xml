@@ -224,7 +224,7 @@
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"/>
 
-        <!-- SPACER TO FIX SCROLLING -->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="120dp"/>
