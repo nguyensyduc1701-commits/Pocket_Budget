@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// Added 'id' to track deletions
+
 data class NotificationItem(
     val id: String,
     val title: String,

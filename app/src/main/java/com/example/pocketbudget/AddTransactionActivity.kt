@@ -42,7 +42,7 @@ class AddTransactionActivity : AppCompatActivity() {
         updateSpinnerList(expenseCategories)
         updateDateButtonText()
 
-        // Date Picker Logic
+        // Date Picker
         btnDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = selectedTimestamp

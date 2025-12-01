@@ -66,10 +66,27 @@ class ProfileFragment : Fragment() {
                 .addSnapshotListener { snapshots, _ ->
                     if (snapshots != null) {
                         var totalExp = 0.0
+
+                        // --- NEW LOGIC: Get Current Month & Year ---
+                        val calendar = Calendar.getInstance()
+                        val currentMonth = calendar.get(Calendar.MONTH)
+                        val currentYear = calendar.get(Calendar.YEAR)
+
                         for (doc in snapshots) {
                             val amount = doc.getDouble("amount") ?: 0.0
                             val type = doc.getString("type") ?: "EXPENSE"
-                            if (type == "EXPENSE") totalExp += amount
+                            val timestamp = doc.getLong("timestamp") ?: 0L
+
+                            // Check Transaction Date
+                            val transCalendar = Calendar.getInstance()
+                            transCalendar.timeInMillis = timestamp
+
+                            // Only add if it matches THIS month and THIS year
+                            if (type == "EXPENSE" &&
+                                transCalendar.get(Calendar.MONTH) == currentMonth &&
+                                transCalendar.get(Calendar.YEAR) == currentYear) {
+                                totalExp += amount
+                            }
                         }
                         currentExpense = totalExp
                         updateBudgetUI()
@@ -120,13 +137,13 @@ class ProfileFragment : Fragment() {
         btnHelp.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("About Pocket Budget")
-                .setMessage(
+                .setMessage("Version 1.0.0\n\n" +
                         "How to use:\n" +
                         "1. Use the + button to add Income or Expenses.\n" +
                         "2. View your balance on the Home Dashboard.\n" +
                         "3. Check the Stats tab for visual breakdowns.\n" +
-                        "4. Set a monthly spending limit here in Profile."
-                        )
+                        "4. Set a monthly spending limit here in Profile.\n\n" +
+                        "Created for Final Year Project.")
                 .setPositiveButton("Got it", null)
                 .show()
         }

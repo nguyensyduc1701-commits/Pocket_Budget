@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         tvExpense = view.findViewById(R.id.tvTotalExpense)
         recyclerView = view.findViewById(R.id.recyclerView)
         val btnFilter = view.findViewById<LinearLayout>(R.id.btnFilter)
-        val btnSort = view.findViewById<LinearLayout>(R.id.btnSort) // NEW
+        val btnSort = view.findViewById<LinearLayout>(R.id.btnSort)
         tvFilterLabel = view.findViewById(R.id.tvFilterLabel)
         notificationBadge = view.findViewById(R.id.notificationBadge)
 
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
 
         btnFilter.setOnClickListener { showFilterMenu(it) }
-        btnSort.setOnClickListener { showSortMenu(it) } // NEW: Sort Click
+        btnSort.setOnClickListener { showSortMenu(it) } // Sort Click
 
         val userId = auth.currentUser?.uid
         if (userId != null) {

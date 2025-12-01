@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val fabAdd = findViewById<FloatingActionButton>(R.id.fabAdd)
-
-        // Make background transparent so FAB curve shows
         bottomNav.background = null
 
         if (savedInstanceState == null) loadFragment(HomeFragment())

@@ -13,7 +13,7 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- HEADER WITH BACK BUTTON -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

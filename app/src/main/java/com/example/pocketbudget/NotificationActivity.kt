@@ -90,7 +90,7 @@ class NotificationActivity : AppCompatActivity() {
                     }
                 }
 
-                //  Add Budget Status (Top Priority) - ALWAYS ADD THIS
+                //  Add Budget Status
                 addBudgetNotification(totalExpense)
 
                 adapter.notifyDataSetChanged()

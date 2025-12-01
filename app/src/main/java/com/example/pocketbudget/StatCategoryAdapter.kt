@@ -11,7 +11,7 @@ data class CategoryStat(val name: String, val totalAmount: Double, val type: Str
 
 class StatCategoryAdapter(
     private val categoryList: List<CategoryStat>,
-    private val currencySymbol: String // NEW
+    private val currencySymbol: String
 ) : RecyclerView.Adapter<StatCategoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

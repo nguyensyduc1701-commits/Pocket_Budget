@@ -200,7 +200,7 @@ class StatsFragment : Fragment() {
                 val weekNum = cal.get(Calendar.WEEK_OF_YEAR)
                 val monthYearFmt = SimpleDateFormat("MMM yyyy", Locale.getDefault())
                 val monthYearStr = monthYearFmt.format(date).toLowerCase(Locale.ROOT)
-                displayLabel = "wk $weekNum $monthYearStr"
+                displayLabel = "wk $weekNum ($monthYearStr)"
             } else {
                 displayLabel = displayFmt.format(date)
             }
